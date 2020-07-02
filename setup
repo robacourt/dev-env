@@ -1,6 +1,6 @@
 #!/bin/bash
-ln -s `pwd`/.vimrc ~/.vimrc
-ln -s `pwd`/.bash_aliases ~/.bash_aliases
-ln -s `pwd`/.tmux.conf ~/.tmux.conf
-ln -s `pwd`/.gitconfig ~/.gitconfig
-ln -s `pwd`/root.gitignore ~/.gitignore
+ln -s `pwd`/config/.vimrc ~/.vimrc
+ln -s `pwd`/config/.bash_aliases ~/.bash_aliases
+ln -s `pwd`/config/.tmux.conf ~/.tmux.conf
+ln -s `pwd`/config/.gitconfig ~/.gitconfig
+ln -s `pwd`/config/.gitignore ~/.gitignore
