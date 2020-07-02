@@ -1,0 +1,3 @@
+*.swp
+docker_exec
+.DS_Store
