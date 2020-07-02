@@ -1,0 +1,6 @@
+#!/bin/bash
+rm ~/.vimrc
+rm ~/.bash_aliases
+rm ~/.tmux.conf
+rm ~/.gitconfig
+rm ~/.gitignore
