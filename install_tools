@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo apt install vim git tmux ack -y
+sudo apt install vim tmux ack -y
