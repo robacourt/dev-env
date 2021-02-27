@@ -13,6 +13,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'elmcast/elm-vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'hashivim/vim-terraform'
+"Plugin 'dense-analysis/ale'
 
 call vundle#end()
 
@@ -61,6 +63,9 @@ noremap <C-p> :Files<cr>
 let $BASH_ENV = "~/.bash_aliases"
 let $FZF_DEFAULT_COMMAND = '(gitls || gitlsdirs | ack "") || ack -g ""'
 
+"Remove spaces at the end of lines
+autocmd BufWritePre * %s/\s\+$//e
+
 autocmd BufWritePost * doautocmd Syntax
 autocmd BufReadPost * doautocmd Syntax
 
@@ -73,12 +78,19 @@ call map(s:undos, 'delete(v:val)')
 
 set iskeyword+=-
 
-
 au BufRead,BufNewFile *.ex* set filetype=elixir
 au BufRead,BufNewFile *.elm set filetype=elm
-au BufRead,BufNewFile *.html.eex set filetype=eelixir
+au BufRead,BufNewFile *.html.*eex set filetype=eelixir
 
 let g:mix_format_on_save = 1
 " let g:mix_format_silent_errors = 1
 
 " autocmd BufWritePre <buffer> silent update %!mix format -
+
+" let g:ale_elixir_elixir_ls_release = '/projects/elixir-ls/rel'
+" let g:ale_linters = {'elixir': ['elixir-ls']}
+
+" ==Terraform==
+au BufRead,BufNewFile *.tf* set filetype=terraform
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1

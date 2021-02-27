@@ -1,3 +1,6 @@
 *.swp
 docker_exec
+ssh_to_production
+ssh_to_staging
 .DS_Store
+log
