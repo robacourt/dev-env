@@ -22,3 +22,5 @@
   autocrlf = input
   editor = vim
   filemode = false
+[pull]
+	ff = only
