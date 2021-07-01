@@ -30,3 +30,4 @@ alias gitlsdirs="list_dirs | gitls_for_dir"
 alias gack="(gitls || gitlsdirs) | ack -x"
 
 alias dc="docker-compose"
+alias gf="git fetch origin master:master"
