@@ -8,6 +8,7 @@ Plugin 'elixir-editors/vim-elixir'
 Plugin 'mhinz/vim-mix-format'
 Plugin 'itchyny/lightline.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
@@ -94,3 +95,6 @@ let g:mix_format_on_save = 1
 au BufRead,BufNewFile *.tf* set filetype=terraform
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
+
+" Disable continuing comments on a new line
+set formatoptions-=cro
