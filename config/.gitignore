@@ -4,3 +4,7 @@ ssh_to_production
 ssh_to_staging
 .DS_Store
 log
+build_as_ci
+clean_build
+copy_to_production
+compile_deps
