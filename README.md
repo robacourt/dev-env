@@ -14,7 +14,3 @@ sudo apt install git
 git clone git@github.com:robacourt/dev-env.git
 cd dev-setup
 ./setup
-
-sudo apt install cargo
-cargo install difftastic
-```

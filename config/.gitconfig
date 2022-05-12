@@ -24,5 +24,3 @@
   filemode = false
 [pull]
 	ff = only
-[diff]
-	external = difft
