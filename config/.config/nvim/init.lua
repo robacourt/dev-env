@@ -27,20 +27,6 @@ require('packer').startup(function(use)
   -- lsp config for elixir-ls support
   use {'neovim/nvim-lspconfig'}
 
-  -- cmp framework for auto-completion support
-  use {'hrsh7th/nvim-cmp'}
-
-  -- install different completion source
-  use {'hrsh7th/cmp-nvim-lsp'}
-  use {'hrsh7th/cmp-buffer'}
-  use {'hrsh7th/cmp-path'}
-  use {'hrsh7th/cmp-cmdline'}
-
-  -- you need a snippet engine for snippet support
-  -- here I'm using vsnip which can load snippets in vscode format
-  use {'hrsh7th/vim-vsnip'}
-  use {'hrsh7th/cmp-vsnip'}
-
   -- syntax highlighting and more
   use {'elixir-editors/vim-elixir'}
 
@@ -82,11 +68,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 end
 
--- for auto completion
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
 -- setting up the elixir language server
--- you have to manually specify the entrypoint cmd for elixir-ls
 require('lspconfig').elixirls.setup {
   cmd = { "/home/rob/src/elixir-ls/rel/language_server.sh" },
   on_attach = on_attach,
@@ -105,49 +87,7 @@ require('lspconfig').elixirls.setup {
   }
 }
 
--- configure auto completion
-
-local cmp = require'cmp'
-
-cmp.setup({
-  completion = {
-    autocomplete = false
-  },
-  snippet = {
-    expand = function(args)
-      -- setting up snippet engine
-      -- this is for vsnip, if you're using other
-      -- snippet engine, please refer to the `nvim-cmp` guide
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-k>'] = cmp.mapping({
-        i = function()
-          if cmp.visible() then
-            cmp.abort()
-          else
-            cmp.complete()
-          end
-        end,
-        c = function()
-          if cmp.visible() then
-            cmp.close()
-          else
-            cmp.complete()
-          end
-        end,
-      }),
-  },
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'vsnip' }, -- For vsnip users.
-    { name = 'buffer' }
-  })
-})
-
--- setup colour scheme
+-- colour scheme
 vim.g["solarized_termcolors"] = 256
 execute('colorscheme solarized')
 
