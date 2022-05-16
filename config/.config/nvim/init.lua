@@ -41,9 +41,6 @@ require('packer').startup(function(use)
   use {'hrsh7th/vim-vsnip'}
   use {'hrsh7th/cmp-vsnip'}
 
-  -- -- treesitter for syntax highlighting and more
-  -- use {'nvim-treesitter/nvim-treesitter'}
-
   -- syntax highlighting and more
   use {'elixir-editors/vim-elixir'}
 
@@ -149,18 +146,6 @@ cmp.setup({
     { name = 'buffer' }
   })
 })
-
--- -- treesitter syntax highlighting - slow on load, using elixir.vim instead
-
--- require'nvim-treesitter.configs'.setup {
---   ensure_installed = "all",
---   ignore_install = { "phpdoc" },
---   sync_install = false,
---   highlight = {
---     enable = true,
---     disable = { },
---   },
--- }
 
 -- setup colour scheme
 vim.g["solarized_termcolors"] = 256
