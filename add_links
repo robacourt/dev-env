@@ -4,3 +4,4 @@ ln -s `pwd`/config/.bash_aliases ~/.bash_aliases
 ln -s `pwd`/config/.tmux.conf ~/.tmux.conf
 ln -s `pwd`/config/.gitconfig ~/.gitconfig
 ln -s `pwd`/config/.gitignore ~/.gitignore
+ln -s `pwd`/config/.config/nvim/init.lua ~/.config/nvim/init.lua 

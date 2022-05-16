@@ -46,3 +46,5 @@ alias gack="(gitls || gitlsdirs) | ack -x"
 alias dc="docker-compose"
 alias gf="git fetch origin master:master"
 alias dcl="docker-compose logs --follow"
+
+alias vim="nvim"
