@@ -52,6 +52,11 @@ end)
 -- here we're setting key mappings for hover documentation, goto definitions, goto references, etc
 -- you may set those key mappings based on your own preference
 local on_attach = function(client, bufnr)
+  -- lsp completion with omnifunc
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  execute('imap <c-k> <c-x><c-o>') -- use <c-k> for omnifunc
+  execute('set completeopt-=preview') -- don't show preview when completing
+
   local opts = { noremap=true, silent=true }
 
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
