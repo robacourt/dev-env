@@ -97,4 +97,4 @@ let g:terraform_align=1
 let g:terraform_fmt_on_save=1
 
 " Disable continuing comments on a new line
-set formatoptions-=cro
+autocmd FileType * set formatoptions-=cro
