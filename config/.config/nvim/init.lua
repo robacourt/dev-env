@@ -45,6 +45,9 @@ require('packer').startup(function(use)
 
   -- comment helper
   use {'tpope/vim-commentary'}
+
+  -- rust
+  use {'rust-lang/rust.vim'}
 end)
 
 -- `on_attach` callback will be called after a language server
@@ -117,3 +120,6 @@ execute('set number')
 execute('set expandtab') -- On pressing tab, insert spaces
 execute('set softtabstop=2') -- On pressing tab, insert 2 spaces
 execute('set shiftwidth=2') -- when indenting with '>', use 2 spaces width
+
+-- set filtetypes based on extension
+execute('au BufRead,BufNewFile *.html.*eex set filetype=eelixir')
