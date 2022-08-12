@@ -62,12 +62,18 @@ local on_attach = function(client, bufnr)
 
   local opts = { noremap=true, silent=true }
 
+  -- To get LSP working:
+  --  mix compile
+  --  :LspInfo
+
+  -- gd - go to definition, go back with Ctrl-o
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  -- for the commands below <leader> is \ - and you only have a second to type the rest
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
@@ -80,7 +86,6 @@ end
 require('lspconfig').elixirls.setup {
   cmd = { "/home/rob/src/elixir-ls/rel/language_server.sh" },
   on_attach = on_attach,
-  capabilities = capabilities,
   settings = {
     elixirLS = {
       -- I choose to disable dialyzer for personal reasons, but
@@ -94,6 +99,12 @@ require('lspconfig').elixirls.setup {
     }
   }
 }
+
+-- turn off error window for mix fomat (the LSP warnings will show the issue instead)
+vim.g["mix_format_silent_errors"] = 1
+
+-- turn off LSP error column
+execute('set signcolumn=no')
 
 -- colour scheme
 vim.g["solarized_termcolors"] = 256
@@ -123,3 +134,10 @@ execute('set shiftwidth=2') -- when indenting with '>', use 2 spaces width
 
 -- set filtetypes based on extension
 execute('au BufRead,BufNewFile *.html.*eex set filetype=eelixir')
+
+-- reload the file if it's changed outside of vim
+execute('set autoread')
+
+-- when using e sp etc. to open a file, pressing tab to bring up a horizonal menu. see :h wildmode
+execute('set wildmode=full:list')
+execute('set nowildmenu')
