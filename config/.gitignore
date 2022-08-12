@@ -8,3 +8,4 @@ build_as_ci
 clean_build
 copy_to_production
 compile_deps
+ignore
