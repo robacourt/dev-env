@@ -141,3 +141,6 @@ execute('set autoread')
 -- when using e sp etc. to open a file, pressing tab to bring up a horizonal menu. see :h wildmode
 execute('set wildmode=full:list')
 execute('set nowildmenu')
+
+-- include hyphens when selecting (e.g. using *)
+execute('set iskeyword+=-')
