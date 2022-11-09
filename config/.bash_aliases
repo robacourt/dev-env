@@ -48,3 +48,5 @@ alias gf="git fetch origin master:master"
 alias dcl="docker-compose logs --follow"
 
 alias vim="nvim"
+
+alias showdir="nautilus ."
