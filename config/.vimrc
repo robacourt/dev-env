@@ -15,7 +15,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'elmcast/elm-vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'hashivim/vim-terraform'
-"Plugin 'dense-analysis/ale'
+Plugin 'dense-analysis/ale'
 
 call vundle#end()
 
@@ -88,8 +88,43 @@ let g:mix_format_on_save = 1
 
 " autocmd BufWritePre <buffer> silent update %!mix format -
 
-" let g:ale_elixir_elixir_ls_release = '/projects/elixir-ls/rel'
+""" LSP config
+
+set completeopt=menu,menuone,preview,noselect,noinsert
+let g:ale_completion_enabled = 1
+
+let g:ale_linters = {}
+" let g:ale_linters.scss = ['stylelint']
+" let g:ale_linters.css = ['stylelint']
+" let g:ale_linters.elixir = ['elixir-ls', 'credo']
+let g:ale_linters.elixir = ['elixir-ls']
 " let g:ale_linters = {'elixir': ['elixir-ls']}
+
+" let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
+" let g:ale_fixers.javascript = ['eslint', 'prettier']
+" let g:ale_fixers.html = ['prettier']
+" let g:ale_fixers.scss = ['stylelint']
+" let g:ale_fixers.css = ['stylelint']
+" let g:ale_fixers.elm = ['format']
+" let g:ale_fixers.ruby = ['rubocop']
+" let g:ale_ruby_rubocop_executable = 'bundle'
+" let g:ale_fixers.elixir = ['mix_format']
+" let g:ale_fixers.xml = ['xmllint']
+
+let g:ale_sign_column_always = 1
+let g:ale_elixir_credo_strict = 1
+
+let g:ale_elixir_elixir_ls_release = expand('~/src/elixir-ls/rel')
+
+" Optional, you can disable Dialyzer with this setting
+let g:ale_elixir_elixir_ls_config = {'elixirLS': {'dialyzerEnabled': v:false}}
+
+nnoremap dt :ALEGoToDefinition<cr>
+nnoremap df :ALEFix<cr>
+nnoremap K :ALEHover<cr>
+
+"""
+
 
 " ==Terraform==
 au BufRead,BufNewFile *.tf* set filetype=terraform
