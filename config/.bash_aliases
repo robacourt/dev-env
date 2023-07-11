@@ -1,6 +1,6 @@
-shopt -s expand_aliases
+# shopt -s expand_aliases
 
-alias gitls="git ls-files -oc --exclude-standard 2>/dev/null"
+alias gitls="git ls-files -oc --exclude-standard -- ':!:**/pspdfkit/**' 2>/dev/null"
 
 list_dirs() {
   for dir in */; do
@@ -23,7 +23,7 @@ gitls_for_dir() {
 }
 
 greplace() {
-  gitls | xargs -I {} sed -i "s/$1/$2/g" {}
+  gitls | xargs -I@ sed -i "" "s/$1/$2/g" @
 }
 
 search_tmux_pane() {
@@ -44,9 +44,7 @@ alias gitlsdirs="list_dirs | gitls_for_dir"
 alias gack="(gitls || gitlsdirs) | ack -x"
 
 alias dc="docker-compose"
-alias gf="git fetch origin master:master"
+alias gf="git fetch origin main:main"
 alias dcl="docker-compose logs --follow"
-
-alias vim="nvim"
 
 alias showdir="nautilus ."

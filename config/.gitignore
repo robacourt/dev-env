@@ -9,3 +9,6 @@ clean_build
 copy_to_production
 compile_deps
 ignore
+
+setup_ngrok
+start
