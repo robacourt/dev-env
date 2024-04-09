@@ -31,7 +31,7 @@ require('packer').startup(function(use)
   use {'elixir-editors/vim-elixir'}
 
   -- colour scheme
-  use {'altercation/vim-colors-solarized'}
+  use {'rebelot/kanagawa.nvim'}
 
   -- mix format
   use {'mhinz/vim-mix-format'}
@@ -84,7 +84,7 @@ end
 
 -- setting up the elixir language server
 require('lspconfig').elixirls.setup {
-  cmd = { "/home/rob/src/elixir-ls/rel/language_server.sh" },
+  cmd = { "/Users/RobAcourt/src/elixir-ls/rel/language_server.sh" },
   on_attach = on_attach,
   settings = {
     elixirLS = {
@@ -107,8 +107,7 @@ vim.g["mix_format_silent_errors"] = 1
 execute('set signcolumn=no')
 
 -- colour scheme
-vim.g["solarized_termcolors"] = 256
-execute('colorscheme solarized')
+vim.cmd("colorscheme kanagawa")
 
 -- mix format
 vim.g["mix_format_on_save"] = 1
