@@ -90,8 +90,8 @@ let g:mix_format_on_save = 1
 
 """ LSP config
 
-set completeopt=menu,menuone,preview,noselect,noinsert
-let g:ale_completion_enabled = 1
+" set completeopt=menu,menuone,preview,noselect,noinsert
+let g:ale_completion_enabled = 0
 
 let g:ale_linters = {}
 " let g:ale_linters.scss = ['stylelint']
@@ -119,8 +119,9 @@ let g:ale_elixir_elixir_ls_release = expand('~/src/elixir-ls/rel')
 " Optional, you can disable Dialyzer with this setting
 let g:ale_elixir_elixir_ls_config = {'elixirLS': {'dialyzerEnabled': v:false}}
 
-nnoremap dt :ALEGoToDefinition<cr>
-nnoremap df :ALEFix<cr>
+nnoremap gt :ALEGoToDefinition<cr>
+nnoremap gr :ALEFindReferences<cr>
+nnoremap gf :ALEFix<cr>
 nnoremap K :ALEHover<cr>
 
 """

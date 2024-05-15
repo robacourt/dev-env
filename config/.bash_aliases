@@ -26,6 +26,11 @@ greplace() {
   gitls | xargs -I@ sed -i "" "s/$1/$2/g" @
 }
 
+freplace() {
+  find . -depth -name "*$1*" -execdir rename 's/$1/$2/' '{}' +
+}
+
+
 search_tmux_pane() {
   REQUIRED_PID=$1
   while read PID PANE; do
@@ -48,3 +53,5 @@ alias gf="git fetch origin main:main"
 alias dcl="docker-compose logs --follow"
 
 alias showdir="nautilus ."
+
+alias vim=nvim
