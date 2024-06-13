@@ -50,6 +50,11 @@ require('packer').startup(function(use)
   use {'rust-lang/rust.vim'}
 end)
 
+local status, nvim_lsp = pcall(require, "lspconfig")
+if (not status) then return end
+
+local protocol = require('vim.lsp.protocol')
+
 -- `on_attach` callback will be called after a language server
 -- instance has been attached to an open buffer with matching filetype
 -- here we're setting key mappings for hover documentation, goto definitions, goto references, etc
@@ -80,11 +85,27 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+
+  -- format on save
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("Format", { clear = true }),
+      buffer = bufnr,
+      callback = function() vim.lsp.buf.formatting_seq_sync() end
+    })
+  end
 end
 
+-- TypeScript
+nvim_lsp.tsserver.setup {
+  on_attach = on_attach,
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" }
+}
+
 -- setting up the elixir language server
-require('lspconfig').elixirls.setup {
-  cmd = { "/Users/RobAcourt/src/elixir-ls/rel/language_server.sh" },
+nvim_lsp.elixirls.setup {
+  cmd = { "/Users/rob/lib/elixir-ls/language_server.sh" },
   on_attach = on_attach,
   settings = {
     elixirLS = {
