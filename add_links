@@ -2,6 +2,7 @@
 ln -s `pwd`/config/.vimrc ~/.vimrc
 ln -s `pwd`/config/.bash_aliases ~/.bash_aliases
 ln -s `pwd`/config/.zshenv ~/.zshenv
+ln -s `pwd`/config/.zshrc ~/.zshrc
 ln -s `pwd`/config/.tmux.conf ~/.tmux.conf
 ln -s `pwd`/config/.gitconfig ~/.gitconfig
 ln -s `pwd`/config/.gitignore ~/.gitignore
