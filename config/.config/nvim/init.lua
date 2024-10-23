@@ -98,7 +98,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- TypeScript with type checking
-nvim_lsp.tsserver.setup {
+nvim_lsp.ts_ls.setup {
   on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     local ts_utils = require("nvim-lsp-ts-utils")
