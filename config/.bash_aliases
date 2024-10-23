@@ -55,4 +55,8 @@ alias dcl="docker-compose logs --follow"
 alias showdir="nautilus ."
 
 alias vim=nvim
-alias ggg="git commit -am \"\`git diff | sgpt 'Come up with a suitable 1 line git commit message for these changes'\`\""
+ggg() {
+  local message
+  message=$(git diff | sgpt 'Come up with a suitable 1 line git commit message for these changes')
+  git commit -am "$message"
+}
