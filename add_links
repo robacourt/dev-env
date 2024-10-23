@@ -8,3 +8,4 @@ ln -s `pwd`/config/.gitconfig ~/.gitconfig
 ln -s `pwd`/config/.gitignore ~/.gitignore
 mkdir ~/.config/nvim
 ln -s `pwd`/config/.config/nvim/init.lua ~/.config/nvim/init.lua
+touch ~/.secrets
