@@ -50,11 +50,11 @@ ggg() {
   if git diff --cached --quiet; then
     # No staged changes to commit, so commit all changes
     message=$(git diff | sgpt 'Come up with a suitable 1 line git commit message for these changes')
-    git commit -am "$message"
+    git commit -am $message
   else
     # Staged changes exist, so commit only those
     message=$(git diff --cached | sgpt 'Come up with a suitable 1 line git commit message for these changes')
-    git commit -m "$message"
+    git commit -m $message
   fi
 }
 
