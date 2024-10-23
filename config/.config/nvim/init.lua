@@ -49,6 +49,9 @@ require('packer').startup(function(use)
 
   -- rust
   use {'rust-lang/rust.vim'}
+
+  -- vim AI
+  use {'madox2/vim-ai'}
 end)
 
 local status, nvim_lsp = pcall(require, "lspconfig")
