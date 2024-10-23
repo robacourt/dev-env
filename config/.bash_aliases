@@ -45,6 +45,19 @@ tmux_pid() {
   tmux list-panes -a -F "#{pane_pid} #{session_name}:#{window_index}:#{pane_index}" | search_tmux_pane $REQUIRED_PID
 }
 
+ggg() {
+  local message
+  if git diff --cached --quiet; then
+    # No staged changes to commit, so commit all changes
+    message=$(git diff | sgpt 'Come up with a suitable 1 line git commit message for these changes')
+    git commit -am "$message"
+  else
+    # Staged changes exist, so commit only those
+    message=$(git diff --cached | sgpt 'Come up with a suitable 1 line git commit message for these changes')
+    git commit -m "$message"
+  fi
+}
+
 alias gitlsdirs="list_dirs | gitls_for_dir"
 alias gack="(gitls || gitlsdirs) | ack -x"
 
@@ -55,12 +68,3 @@ alias dcl="docker-compose logs --follow"
 alias showdir="nautilus ."
 
 alias vim=nvim
-ggg() {
-  local message
-  if git diff --cached --quiet; then
-    echo "No staged changes to commit."
-    return 1
-  fi
-  message=$(git diff --cached | sgpt 'Come up with a suitable 1 line git commit message for these changes')
-  git commit -m "$message"
-}
