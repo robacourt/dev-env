@@ -150,6 +150,9 @@ vim.api.nvim_set_keymap('n', '<C-p>', '<cmd>Files<CR>', {noremap = true}) -- Ope
 -- go to start of line as well as first line after typing "gg"
 execute('set startofline')
 
+-- highlight the screen line of the cursor with CursorLine
+execute('set cursorline')
+
 -- show numbers at the start of the line
 execute('set number')
 
