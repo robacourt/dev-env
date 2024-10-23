@@ -57,6 +57,10 @@ alias showdir="nautilus ."
 alias vim=nvim
 ggg() {
   local message
-  message=$(git diff | sgpt 'Come up with a suitable 1 line git commit message for these changes')
-  git commit -am "$message"
+  if git diff --cached --quiet; then
+    echo "No staged changes to commit."
+    return 1
+  fi
+  message=$(git diff --cached | sgpt 'Come up with a suitable 1 line git commit message for these changes')
+  git commit -m "$message"
 }
