@@ -24,8 +24,9 @@ require('packer').startup(function(use)
   -- the plugin manager can manage itself
   use {'wbthomason/packer.nvim'}
 
-  -- lsp config for elixir-ls support
+  -- lsp config for elixir-ls and typescript support
   use {'neovim/nvim-lspconfig'}
+  use {'jose-elias-alvarez/nvim-lsp-ts-utils'}
 
   -- syntax highlighting and more
   use {'elixir-editors/vim-elixir'}
@@ -96,9 +97,14 @@ local on_attach = function(client, bufnr)
   -- end
 end
 
--- TypeScript
+-- TypeScript with type checking
 nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    local ts_utils = require("nvim-lsp-ts-utils")
+    ts_utils.setup {}
+    ts_utils.setup_client(client)
+  end,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" }
 }
